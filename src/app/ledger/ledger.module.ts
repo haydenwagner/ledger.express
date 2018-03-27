@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LedgerComponent } from './ledger.component';
 
 import { EntryComponent } from './entry/entry.component';
-import { EntryInputComponent} from './entry-input/entry-input.component';
+import { EntryElementComponent} from './entry-element/entry-element.component';
+import { NewEntryInputComponent} from './new-entry-input/new-entry-input.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { EntryInputComponent} from './entry-input/entry-input.component';
   declarations: [
     LedgerComponent,
     EntryComponent,
-    EntryInputComponent
+    EntryElementComponent,
+    NewEntryInputComponent
   ],
   exports: [LedgerComponent]
 })
