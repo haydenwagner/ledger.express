@@ -6,9 +6,12 @@ import { EntryComponent } from './entry/entry.component';
 import { EntryElementComponent} from './entry-element/entry-element.component';
 import { NewEntryInputComponent} from './new-entry-input/new-entry-input.component';
 
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    BsDatepickerModule.forRoot(),
   ],
   declarations: [
     LedgerComponent,

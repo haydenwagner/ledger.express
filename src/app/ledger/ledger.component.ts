@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {_} from 'lodash';
+import * as _ from 'lodash';
 
 import { Ledger } from '../models/ledger.model';
 import { LedgerElementType } from '../enums/ledger-element-type.enum';
@@ -7,7 +7,7 @@ import { LedgerElementType } from '../enums/ledger-element-type.enum';
 @Component({
   selector: 'app-ledger',
   templateUrl: './ledger.component.html',
-  styleUrls: ['./ledger.component.css']
+  styleUrls: ['./ledger.component.scss']
 })
 export class LedgerComponent implements OnInit {
   typeEnum: typeof LedgerElementType = LedgerElementType;

@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LedgerElement } from '../../models/ledger-element.model';
 
 @Component({
-  selector: 'app-entry-input',
+  selector: 'app-new-entry-input',
   templateUrl: './new-entry-input.component.html',
-  styleUrls: ['./new-entry-input.component.css']
+  styleUrls: ['./new-entry-input.component.scss']
 })
 export class NewEntryInputComponent implements OnInit {
-  private elements: LedgerElement[];
+  @Input() elements: LedgerElement[];
 
   constructor() {}
 

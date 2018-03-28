@@ -1,1 +1,26 @@
-<input placeholder="A single entry element to input entry data">
+<div [ngSwitch]="elementType">
+  <div *ngSwitchCase="LedgerElementType.text">
+    <div class="col-12 form-group">
+      <input type="text"
+             placeholder="text"
+             class="form-control">
+    </div>
+  </div>
+
+  <div *ngSwitchCase="LedgerElementType.date">
+    <div class="col-12 form-group">
+      <input type="text"
+             placeholder="Datepicker"
+             class="form-control"
+             bsDatepicker>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="LedgerElementType.number">
+    <div class="col-12 form-group">
+      <input type="text"
+             placeholder="Number"
+             class="form-control">
+    </div>
+  </div>
+</div>

@@ -1,1 +1,8 @@
-<p>entry-input works fine</p>
+<div>
+  <p>new entry-input works fine</p>
+  <div class="row">
+    <app-entry-element *ngFor="let element of elements"
+    [element]="element"></app-entry-element>
+  </div>
+</div>
+
