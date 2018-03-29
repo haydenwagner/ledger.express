@@ -1,6 +1,31 @@
 <div class="ledger">
-  ledger works!
+  <!--ledger works!-->
 
+
+
+  <!--<app-entry-list></app-entry-list>--><!-- todo have to make this, should be a bs datatable with  -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"> </th>
+        <th *ngFor="let element of ledgerData.elements" scope="col">{{element.name}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><ngx-date-time
+          name="calendar-input1"
+          [label]="'Date of attack'"
+          [(ngModel)]="test"
+          (change)="dateChanged($event)">
+        </ngx-date-time></td>
+        <td><input></td>
+        <td><input></td>
+      </tr>
+    </tbody>
+  </table>
 
   <app-new-entry-input [elements]="ledgerData.elements"></app-new-entry-input>
 </div>

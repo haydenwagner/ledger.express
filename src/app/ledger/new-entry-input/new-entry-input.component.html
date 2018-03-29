@@ -6,3 +6,22 @@
   </div>
 </div>
 
+<button
+  type="button"
+  (click)="openDrawer('bottom')">
+  Open Bottom Drawer
+</button>
+<ng-template #editTmpl>
+  <!--<ngx-toolbar-->
+    <!--[title]="'Attack Alert!'">-->
+  <!--</ngx-toolbar>-->
+  <section class="section">
+    <h1>Attack Type: Malware</h1>
+    <button
+      type="button"
+      class="btn"
+      (click)="openDrawer()">
+      Open Details
+    </button>
+  </section>
+</ng-template>

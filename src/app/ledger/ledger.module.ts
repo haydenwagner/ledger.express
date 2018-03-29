@@ -2,16 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LedgerComponent } from './ledger.component';
 
+import {FormsModule} from '@angular/forms';
+
 import { EntryComponent } from './entry/entry.component';
 import { EntryElementComponent} from './entry-element/entry-element.component';
 import { NewEntryInputComponent} from './new-entry-input/new-entry-input.component';
 
-import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+
+import {DrawerService, DrawerModule, DateTimeModule, DateTimeComponent} from '@swimlane/ngx-ui';
+
 
 @NgModule({
   imports: [
     CommonModule,
-    BsDatepickerModule.forRoot(),
+    DrawerModule,
+    DateTimeModule,
+    FormsModule
   ],
   declarations: [
     LedgerComponent,
@@ -19,6 +25,7 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
     EntryElementComponent,
     NewEntryInputComponent
   ],
-  exports: [LedgerComponent]
+  exports: [LedgerComponent, DateTimeComponent],
+  providers: [DrawerService]
 })
 export class LedgerModule { }

@@ -11,6 +11,7 @@ import { LedgerElementType } from '../enums/ledger-element-type.enum';
 })
 export class LedgerComponent implements OnInit {
   typeEnum: typeof LedgerElementType = LedgerElementType;
+  test = '3/6/18';
 
   public ledgerData: Ledger = {
     $key: _.uniqueId(),
@@ -32,9 +33,14 @@ export class LedgerComponent implements OnInit {
     entries: []
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  dateChanged(event) {
+    console.log(event);
   }
 
 }
