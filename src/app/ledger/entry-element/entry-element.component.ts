@@ -1,5 +1,4 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { LedgerElement} from '../../models/ledger-element.model';
 import { LedgerElementType} from '../../enums/ledger-element-type.enum';
 
 @Component({
@@ -8,7 +7,7 @@ import { LedgerElementType} from '../../enums/ledger-element-type.enum';
   styleUrls: ['./entry-element.component.scss']
 })
 export class EntryElementComponent implements OnInit {
-  @Input() element: LedgerElement;
+  @Input() element;
   LedgerElementType: typeof LedgerElementType = LedgerElementType;
   elementType: LedgerElementType;
 
@@ -16,5 +15,9 @@ export class EntryElementComponent implements OnInit {
 
   ngOnInit() {
      this.elementType = this.element.type;
+  }
+
+  dateChanged(event) {
+    console.log(event);
   }
 }

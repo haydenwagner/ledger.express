@@ -3,15 +3,22 @@
     <div class="col-12 form-group">
       <input type="text"
              placeholder="text"
-             class="form-control">
+             class="form-control"
+             [(ngModel)]="element.value">
     </div>
   </div>
 
   <div *ngSwitchCase="LedgerElementType.date">
     <div class="col-12 form-group">
-      <input type="text"
-             placeholder="Datepicker"
-             class="form-control">
+      <!--<input type="text"-->
+             <!--placeholder="Datepicker"-->
+             <!--class="form-control">-->
+
+      <ngx-date-time
+        name="calendar-input1"
+        [(ngModel)]="element.value"
+        (change)="dateChanged($event)">
+      </ngx-date-time>
     </div>
   </div>
 
@@ -19,7 +26,8 @@
     <div class="col-12 form-group">
       <input type="text"
              placeholder="Number"
-             class="form-control">
+             class="form-control"
+             [(ngModel)]="element.value">
     </div>
   </div>
 </div>
