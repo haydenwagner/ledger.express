@@ -1,0 +1,14 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th *ngFor="let element of data.elements" scope="col">{{element.name}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr app-entry *ngFor="let entry of data.entries; let index = index" [entry]="entry" [index]="index"></tr>
+  </tbody>
+</table>
+
+
+
