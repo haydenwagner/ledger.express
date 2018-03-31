@@ -10,3 +10,14 @@ body{
 * {
   box-sizing: border-box;
 }
+
+ngx-date-time{
+  .ngx-input{
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .ngx-date-time .calendar-dialog-btn{
+    padding-top: 8px;
+  }
+}

@@ -1,6 +1,11 @@
 <div [ngSwitch]="elementType">
   <div *ngSwitchCase="LedgerElementType.text">
-    <div class="col-12 form-group">
+
+    <p [hidden]="viewMode">
+      {{element.value}}
+    </p>
+
+    <div class="form-group" [hidden]="!viewMode">
       <input type="text"
              placeholder="text"
              class="form-control"
@@ -9,7 +14,11 @@
   </div>
 
   <div *ngSwitchCase="LedgerElementType.date">
-    <div class="col-12 form-group">
+    <p [hidden]="viewMode">
+      {{element.value | date}}
+    </p>
+
+    <div class="form-group" [hidden]="!viewMode">
       <!--<input type="text"-->
              <!--placeholder="Datepicker"-->
              <!--class="form-control">-->
@@ -23,7 +32,11 @@
   </div>
 
   <div *ngSwitchCase="LedgerElementType.number">
-    <div class="col-12 form-group">
+    <p [hidden]="viewMode">
+      {{element.value}}
+    </p>
+
+    <div class="form-group" [hidden]="!viewMode">
       <input type="text"
              placeholder="Number"
              class="form-control"

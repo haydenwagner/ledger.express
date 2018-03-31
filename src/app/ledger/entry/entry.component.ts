@@ -10,7 +10,7 @@ import {Entry} from '../../models/entry.model';
 })
 export class EntryComponent implements OnInit {
   EntryMode: typeof EntryMode = EntryMode;
-  mode: EntryMode = EntryMode.view;
+  viewMode: EntryMode = EntryMode.view;
 
   @Input() entry: Entry;
   @Input() index: number;
@@ -18,4 +18,8 @@ export class EntryComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  toggleMode(){
+    this.viewMode = this.viewMode ? 0 : 1;
+  }
 }
