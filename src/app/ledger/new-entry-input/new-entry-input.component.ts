@@ -12,18 +12,18 @@ import {TemplateRef} from '@angular/core';
 export class NewEntryInputComponent implements OnInit {
   @Input() elements: LedgerElement[];
 
-  @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
+  // @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
 
   constructor(private drawerMngr: DrawerService) { }
 
-  openDrawer(direction = 'left', size = 80) {
-    this.drawerMngr.create({
-      direction,
-      template: this.editTmpl,
-      size,
-      context: 'Alert Everyone!'
-    });
-  }
+  // openDrawer(direction = 'left', size = 80) {
+  //   this.drawerMngr.create({
+  //     direction,
+  //     template: this.editTmpl,
+  //     size,
+  //     context: 'Alert Everyone!'
+  //   });
+  // }
 
   ngOnInit() {}
 }
