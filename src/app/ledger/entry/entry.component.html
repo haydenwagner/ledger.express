@@ -1,3 +1,4 @@
-<p>entry works</p>
-
-<app-entry-element></app-entry-element>
+<th scope="row">{{index+1}}</th>
+<td *ngFor="let entryElement of entry.data">
+  <app-entry-element [element]="entryElement"></app-entry-element>
+</td>
