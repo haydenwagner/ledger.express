@@ -1,6 +1,6 @@
 import { LedgerElementType } from '../enums/ledger-element-type.enum';
 
-export class LedgerElement {
+export interface LedgerElement {
   name: string;
   type: LedgerElementType;
 }
