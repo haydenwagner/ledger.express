@@ -2,11 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { LedgerModule} from './ledger/ledger.module';
 
-import {NgxUIModule} from '@swimlane/ngx-ui';
+import {NgxUIModule, DialogService} from '@swimlane/ngx-ui';
+
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -17,9 +23,14 @@ import {NgxUIModule} from '@swimlane/ngx-ui';
     BrowserModule,
     LedgerModule,
     NgxUIModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    DialogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
