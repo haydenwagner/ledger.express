@@ -19,7 +19,29 @@ export class EntryComponent implements OnInit {
 
   ngOnInit() {}
 
-  toggleMode(){
+  editEntry(event) {
+    // we have key here now for this entry
+    console.log(event);
+    this.toggleMode();
+  }
+
+  deleteEntry(event) {
+    // we have key here now for this entry
+    console.log(event);
+  }
+
+  saveEdit(event) {
+    // we have key here now for this entry
+    console.log(event);
+  }
+
+  cancelEdit(event) {
+    // we have key here now for this entry
+    console.log(event);
+    this.toggleMode();
+  }
+
+  toggleMode() {
     this.viewMode = this.viewMode ? 0 : 1;
   }
 }

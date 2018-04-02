@@ -3,6 +3,11 @@
   <app-entry-element [element]="entryElement" [viewMode]="viewMode"></app-entry-element>
 </td>
 <td>
-  <button class="btn"
-          (click)="toggleMode()">{{EntryMode[viewMode ? 0 : 1]}}</button>
+  <!--<button class="btn btn-sm"-->
+          <!--(click)="toggleMode()">{{EntryMode[viewMode ? 0 : 1]}}</button>-->
+  <app-entry-actions [viewMode]="viewMode"
+                     (editEntryAction)="editEntry($event)"
+                     (deleteEntryAction)="deleteEntry($event)"
+                     (saveEditAction)="saveEdit($event)"
+                     (cancelEditAction)="cancelEdit($event)"></app-entry-actions>
 </td>
