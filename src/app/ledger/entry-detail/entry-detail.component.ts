@@ -5,11 +5,11 @@ import {DrawerService} from '@swimlane/ngx-ui';
 import {TemplateRef} from '@angular/core';
 
 @Component({
-  selector: 'app-new-entry-input',
-  templateUrl: './new-entry-input.component.html',
-  styleUrls: ['./new-entry-input.component.scss']
+  selector: 'app-entry-detail',
+  templateUrl: './entry-detail.component.html',
+  styleUrls: ['./entry-detail.component.scss']
 })
-export class NewEntryInputComponent implements OnInit {
+export class EntryDetailComponent implements OnInit {
   @Input() elements: LedgerElement[];
 
   // @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
