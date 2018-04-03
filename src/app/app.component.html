@@ -1,44 +1,29 @@
-<h1 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>
+<h4 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h4>
 
-<button type="button" class="btn" (click)="openDialog({ context: {}, template: wizardTmpl})" [hidden]="authService.user | async">
-  Login / Sign up
-</button>
-
-<button type="button" class="btn" *ngIf="authService.user | async" (click)="logout()">
-  Logout
-</button>
+<button class="btn btn-outline-primary mb-1" (click)="openDialog(content)" [hidden]="authService.user | async">Login / Sign up</button>
+<button type="button" class="btn" *ngIf="authService.user | async" (click)="logout()">Logout</button>
 
 <app-ledger></app-ledger>
 
-
-<!-- Auth dialog popup -->
-<ng-template #wizardTmpl let-context="context">
-  <div class="ngx-dialog-header">
-    <h1>Login or Sign up</h1>
-    <!--<span>Custom subtext</span>-->
-  </div>
-  <div>
-    <ngx-input
-      type="text"
-      [label]="'Email'"
-      [autofocus]="true"
-      [(ngModel)]="email"
-      [hint]="'Enter your email'">
-    </ngx-input>
-
-    <ngx-input
-      type="password"
-      [label]="'Password'"
-      [(ngModel)]="password"
-      [hint]="'Enter your account password'">
-    </ngx-input>
-  </div>
-  <div class="ngx-dialog-footer">
-    <button type="button" class="btn btn-primary" (click)="signup()" [disabled]="!email || !password">
-      <i class="ngx-icon ngx-check has-text"></i>Sign up
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Login / Sign up</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
     </button>
-    <button type="button" class="btn btn-primary" (click)="login()" [disabled]="!email || !password">
-      <i class="ngx-icon ngx-check has-text"></i>Login
-    </button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-danger" role="alert" [hidden]="!authError">
+      {{authError}}
+    </div>
+
+
+    <ngx-input type="text" [label]="'Email'" [autofocus]="true" [(ngModel)]="email" (ngModelChange)="clearAuthError()"  [hint]="'Enter your email'"></ngx-input>
+    <ngx-input type="password" [label]="'Password'" [(ngModel)]="password" (ngModelChange)="clearAuthError()" [hint]="'Enter your account password'"></ngx-input>
+  </div>
+  <div class="modal-footer">
+    <!--<button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>-->
+    <button type="button" class="btn btn-light" (click)="signup()" [disabled]="!email || !password">Sign up</button>
+    <button type="button" class="btn btn-light" (click)="login()" [disabled]="!email || !password">Login</button>
   </div>
 </ng-template>

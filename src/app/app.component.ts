@@ -1,8 +1,8 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 
-import { DialogService } from '@swimlane/ngx-ui';
+import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -10,26 +10,25 @@ import { DialogService } from '@swimlane/ngx-ui';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
-
-  title = 'app';
   email: string;
   password: string;
-  private dialogComponent: any;
+  authError: false;
+  private loginModal: NgbModalRef;
 
-  constructor(public authService: AuthService,
-              public dialogMngr: DialogService) {
-  }
+  constructor(public authService: AuthService, private modalService: NgbModal) {}
 
-  openDialog(options): void {
-    this.dialogComponent = this.dialogMngr.create(options);
+  openDialog(content) {
+    this.loginModal = this.modalService.open(content);
   }
 
   signup() {
     this.authService.signup(this.email, this.password)
       .then(res => {
         this.email = this.password = '';
-        this.dialogMngr.destroy(this.dialogComponent);
+        this.loginModal.close();
+      })
+      .catch(err => {
+        this.authError = err.message;
       });
   }
 
@@ -37,11 +36,18 @@ export class AppComponent {
     this.authService.login(this.email, this.password)
       .then(res => {
         this.email = this.password = '';
-        this.dialogMngr.destroy(this.dialogComponent);
+        this.loginModal.close();
+      })
+      .catch(err => {
+        this.authError = err.message;
       });
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  clearAuthError(): void {
+    this.authError = false;
   }
 }
