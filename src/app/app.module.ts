@@ -11,8 +11,10 @@ import {NgxUIModule, DialogService} from '@swimlane/ngx-ui';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
 
 import { AuthService } from './auth.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { AuthService } from './auth.service';
     NgxUIModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    NgbModule.forRoot()
   ],
   providers: [
     AuthService,
