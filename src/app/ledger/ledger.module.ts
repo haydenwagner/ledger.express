@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 
 import { EntryListComponent } from './entry-list/entry-list.component';
 import { EntryComponent } from './entry/entry.component';
+import { EntryInputComponent} from './entry-input/entry-input.component';
 import { EntryActionsComponent} from './entry-actions/entry-actions.component';
 import { EntryElementComponent } from './entry-element/entry-element.component';
 import { EntryDetailComponent } from './entry-detail/entry-detail.component';
@@ -25,6 +26,7 @@ import {DrawerService, DrawerModule, DateTimeModule, DateTimeComponent} from '@s
     LedgerComponent,
     EntryListComponent,
     EntryComponent,
+    EntryInputComponent,
     EntryActionsComponent,
     EntryElementComponent,
     EntryDetailComponent

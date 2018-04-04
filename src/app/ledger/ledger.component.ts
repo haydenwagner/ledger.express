@@ -34,17 +34,17 @@ export class LedgerComponent implements OnInit {
         $key: _.uniqueId(),
         data: [
           {
-            element: 'Date',
+            name: 'Date',
             type: this.typeEnum.date,
             value: '01/03/99'
           },
           {
-            element: 'Name',
+            name: 'Name',
             type: this.typeEnum.text,
             value: 'First entry'
           },
           {
-            element: 'Amount',
+            name: 'Amount',
             type: this.typeEnum.number,
             value: 100
           }
@@ -54,17 +54,17 @@ export class LedgerComponent implements OnInit {
         $key: _.uniqueId(),
         data: [
           {
-            element: 'Date',
+            name: 'Date',
             type: this.typeEnum.date,
             value: '01/04/99'
           },
           {
-            element: 'Name',
+            name: 'Name',
             type: this.typeEnum.text,
             value: 'Second entry'
           },
           {
-            element: 'Amount',
+            name: 'Amount',
             type: this.typeEnum.number,
             value: 150
           }
@@ -74,17 +74,17 @@ export class LedgerComponent implements OnInit {
         $key: _.uniqueId(),
         data: [
           {
-            elementName: 'Date',
+            name: 'Date',
             type: this.typeEnum.date,
             value: '01/05/99'
           },
           {
-            elementName: 'Name',
+            name: 'Name',
             type: this.typeEnum.text,
             value: 'Third entry'
           },
           {
-            elementName: 'Amount',
+            name: 'Amount',
             type: this.typeEnum.number,
             value: 200
           }

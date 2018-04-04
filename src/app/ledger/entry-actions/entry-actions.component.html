@@ -1,10 +1,13 @@
-<div [hidden]="viewMode">
+<div [hidden]="viewMode || addMode">
   <button class="btn btn-sm" (click)="editEntry()">Edit</button>
   <button class="btn btn-sm btn-danger" (click)="deleteEntry()">Delete</button>
 </div>
 
-<div [hidden]="!viewMode">
+<div [hidden]="!viewMode || addMode">
   <button class="btn btn-sm btn-primary" (click)="saveEdit()">Save</button>
   <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
 </div>
 
+<div [hidden]="!addMode">
+  <button class="btn btn-sm btn-primary" (click)="addEntry()">Add entry</button>
+</div>

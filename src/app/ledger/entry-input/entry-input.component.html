@@ -1,0 +1,9 @@
+<th class="text-muted" scope="row">{{index+1}}</th>
+<td *ngFor="let element of elements">
+  <app-entry-element [elementName]="element.name" [elementType]="element.type" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>
+</td>
+<td>
+
+  <app-entry-actions [addMode]="true"
+                     (addEntryAction)="addEntry($event)"></app-entry-actions>
+</td>

@@ -10,7 +10,7 @@ import {Entry} from '../../models/entry.model';
 })
 export class EntryComponent implements OnInit {
   EntryMode: typeof EntryMode = EntryMode;
-  viewMode: EntryMode = EntryMode.view;
+  entryMode: EntryMode = EntryMode.view;
 
   @Input() entry: Entry;
   @Input() index: number;
@@ -42,6 +42,6 @@ export class EntryComponent implements OnInit {
   }
 
   toggleMode() {
-    this.viewMode = this.viewMode ? 0 : 1;
+    this.entryMode = (this.entryMode === EntryMode.view) ? EntryMode.edit : EntryMode.view;
   }
 }

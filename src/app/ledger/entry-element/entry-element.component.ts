@@ -8,16 +8,16 @@ import {EntryMode} from '../../enums/entry-mode.enum';
   styleUrls: ['./entry-element.component.scss']
 })
 export class EntryElementComponent implements OnInit {
-  @Input() element;
-  @Input() viewMode: EntryMode;
+  @Input() elementType: LedgerElementType;
+  @Input() elementValue;
+  @Input() elementName: string; //todo be more specific with type
+  @Input() editMode: EntryMode;
   LedgerElementType: typeof LedgerElementType = LedgerElementType;
   EntryMode: typeof EntryMode = EntryMode;
-  elementType: LedgerElementType;
 
   constructor() {}
 
   ngOnInit() {
-     this.elementType = this.element.type;
   }
 
   dateChanged(event) {

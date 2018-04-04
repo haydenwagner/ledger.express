@@ -1,46 +1,47 @@
 <div [ngSwitch]="elementType">
   <div *ngSwitchCase="LedgerElementType.text">
 
-    <p [hidden]="viewMode">
-      {{element.value}}
+    <p [hidden]="editMode">
+      {{elementValue}}
     </p>
 
-    <div class="form-group" [hidden]="!viewMode">
+    <div class="form-group" [hidden]="!editMode">
       <input type="text"
-             placeholder="text"
+             placeholder="{{elementName}}"
              class="form-control"
-             [(ngModel)]="element.value">
+             [(ngModel)]="elementValue">
     </div>
   </div>
 
   <div *ngSwitchCase="LedgerElementType.date">
-    <p [hidden]="viewMode">
-      {{element.value | date}}
+    <p [hidden]="editMode">
+      {{elementValue | date}}
     </p>
 
-    <div class="form-group" [hidden]="!viewMode">
+    <div class="form-group" [hidden]="!editMode">
       <!--<input type="text"-->
              <!--placeholder="Datepicker"-->
              <!--class="form-control">-->
 
       <ngx-date-time
         name="calendar-input1"
-        [(ngModel)]="element.value"
+        placeholder="{{elementName}}"
+        [(ngModel)]="elementValue"
         (change)="dateChanged($event)">
       </ngx-date-time>
     </div>
   </div>
 
   <div *ngSwitchCase="LedgerElementType.number">
-    <p [hidden]="viewMode">
-      {{element.value}}
+    <p [hidden]="editMode">
+      {{elementValue}}
     </p>
 
-    <div class="form-group" [hidden]="!viewMode">
+    <div class="form-group" [hidden]="!editMode">
       <input type="text"
-             placeholder="Number"
+             placeholder="{{elementName}}"
              class="form-control"
-             [(ngModel)]="element.value">
+             [(ngModel)]="elementValue">
     </div>
   </div>
 </div>

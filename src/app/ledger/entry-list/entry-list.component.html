@@ -8,6 +8,7 @@
   </thead>
   <tbody>
     <tr app-entry *ngFor="let entry of data.entries; let index = index" [entry]="entry" [index]="index"></tr>
+    <tr app-entry-input [elements]="data.elements" [index]="data.entries.length"></tr>
   </tbody>
 </table>
 

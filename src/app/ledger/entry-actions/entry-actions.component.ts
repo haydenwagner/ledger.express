@@ -8,6 +8,8 @@ import {EntryMode} from '../../enums/entry-mode.enum';
 })
 export class EntryActionsComponent implements OnInit {
   @Input() viewMode: EntryMode;
+  @Input() addMode: boolean;
+  @Output() addEntryAction = new EventEmitter<string>();
   @Output() editEntryAction = new EventEmitter<string>();
   @Output() deleteEntryAction = new EventEmitter<string>();
   @Output() saveEditAction = new EventEmitter<string>();
@@ -16,6 +18,10 @@ export class EntryActionsComponent implements OnInit {
   EntryMode: typeof EntryMode = EntryMode;
 
   constructor() {}
+
+  addEntry() {
+    this.addEntryAction.emit('add');
+  }
 
   editEntry() {
     this.editEntryAction.emit('edit');
