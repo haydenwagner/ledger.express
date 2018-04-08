@@ -5,5 +5,5 @@ export class Ledger {
   $key: string;
   name: string;
   elements: LedgerElement[];
-  entries: Entry[];
+  // entries: any;
 }

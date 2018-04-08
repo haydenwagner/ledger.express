@@ -68,12 +68,21 @@ export class AppComponent {
   }
 
   makeUserCollection(uid) {
-    this.userCollection.add({uid : uid, entries: []})
-      .then(res => {
-        console.log('user document added to collection');
+    this.userCollection.add({uid: uid})
+      .then(function(userDoc) {
+        console.log(userDoc);
+        userDoc.collection('entries');
       })
       .catch(err => {
         console.log(err.message);
       });
+
+    // this.userCollection.add({uid : uid, entries: []})
+    //   .then(res => {
+    //     console.log('user document added to collection');
+    //   })
+    //   .catch(err => {
+    //     console.log(err.message);
+    //   });
   }
 }

@@ -7,10 +7,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr app-entry *ngFor="let entry of data.entries; let index = index" [entry]="entry" [index]="index"></tr>
-    <tr app-entry-input [elements]="data.elements" [index]="data.entries.length"></tr>
+    <tr app-entry *ngFor="let entry of entries | async; let index = index" [entry]="entry" [index]="index"></tr>
+    <tr app-entry-input [elements]="data.elements"></tr>
   </tbody>
 </table>
 
 
 
+
+
+<!--[index]="entries.length" was in the app-entry-input-->

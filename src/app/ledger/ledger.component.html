@@ -1,3 +1,9 @@
 <div class="ledger">
-  <app-entry-list [data]="ledgerData"></app-entry-list>
+  <app-entry-list [data]="ledgerData" *ngIf="entries$ | async" [entries]="entries$ | async"></app-entry-list>
 </div>
+
+<ul>
+  <li *ngFor="let entry of entries | async">
+    {{ entry }}
+  </li>
+</ul>
