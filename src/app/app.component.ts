@@ -2,12 +2,13 @@ import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 
 import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {Entry} from './models/entry.model';
+import {User} from './models/user.model';
 
-export interface User {uid: string; entries: Entry[]; }
+import {map} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,9 @@ export class AppComponent {
   authError: false;
   private loginModal: NgbModalRef;
   private userCollection: AngularFirestoreCollection<User>;
+  private allUsers: AngularFirestoreCollection<User>;
+  private testCollection: any;
+  public tests: any;
 
 
   constructor(
@@ -29,18 +33,65 @@ export class AppComponent {
     private modalService: NgbModal,
     private afs: AngularFirestore
   ) {
-    this.userCollection = afs.collection('user');
+    /**
+    * Working version of the type of query and valueChanges subscription I could do to get the user in the ledger or entry list component.
+    */
+
+    this.allUsers = afs.collection('user');
+
+    this.allUsers.doc('testCustomId').set({
+      data: 'data for custom'
+    });
+
+    this.userCollection = afs.collection('user', ref => ref.where('uid', '==', 'GYjfq9CmF7dqw5UOXdwuVf3oR4u1'));
+    this.userCollection.valueChanges().subscribe(userCollection => {
+      console.log(userCollection);
+    });
+
+
+    // this.newSubcollection = afs.collection('user').add({uid: 'test'}).then(function(res) {
+    //   console.log(res);
+    //   let entriesCollection = res.collection('entries').add({data: {name: 'jim', date: new Date()}});
+    //   console.log(entriesCollection);
+
+      // collection('testSub').doc('testSubDoc');
+    // }).catch(err => console.log(err));
   }
 
   openDialog(content) {
+    let counter = 3;
+
     this.loginModal = this.modalService.open(content);
+
+    this.testCollection = this.afs.collection('test');
+
+    /**
+     * Tests is not a stream of documents. It is stream of states
+     * of an array that hold documents. i.e. in my subscription function
+     * for the first time I will get an array of objects. If I add a doc
+     * to that collection I will get another array passed to my subscribe
+     * function with one more object.
+    */
+    this.tests = this.testCollection.valueChanges().map(test => {
+      test.zipdip = 'p' + counter;
+      return test;
+    });
+
+    this.tests.subscribe(test => {
+      console.log(test);
+
+      if (counter < 3) {
+        this.testCollection.add({newProp: 'tests'});
+        counter++;
+      }
+    });
   }
 
   signup() {
     this.authService.signup(this.email, this.password)
       .then(res => {
+        this.makeUserCollection(res.uid, this.email);
         this.email = this.password = '';
-        this.makeUserCollection(res.uid);
         this.loginModal.close();
       })
       .catch(err => {
@@ -67,11 +118,10 @@ export class AppComponent {
     this.authError = false;
   }
 
-  makeUserCollection(uid) {
-    this.userCollection.add({uid: uid})
+  makeUserCollection(uid, email) {
+    this.allUsers.doc(uid).set({email: email})
       .then(function(userDoc) {
         console.log(userDoc);
-        userDoc.collection('entries');
       })
       .catch(err => {
         console.log(err.message);

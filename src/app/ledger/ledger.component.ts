@@ -11,6 +11,7 @@ import {Entry} from '../models/entry.model';
 
 import {Observable} from 'rxjs/Observable';
 import {map} from 'rxjs/operators';
+import {User} from '../models/user.model';
 
 @Component({
   selector: 'app-ledger',
@@ -19,18 +20,41 @@ import {map} from 'rxjs/operators';
 })
 export class LedgerComponent implements OnInit {
   typeEnum: typeof LedgerElementType = LedgerElementType;
+  userCollection: AngularFirestoreCollection<User>;
   entriesRef: AngularFirestoreCollection<Entry>;
   entries$: Observable<Entry[]>;
 
   constructor(private afs: AngularFirestore) {
     firebase.auth().onAuthStateChanged(function(user) {
-      this.entriesRef = afs.collection('user', ref => ref.where('uid', '==', user.uid));
-      this.entries = this.entriesRef.valueChanges().pipe(
-        map(entries => {
-          console.log(entries);
-          return entries[0];
-        })
-      );
+      if (user) {
+
+        this.userRef = afs.doc('user/' + user.uid);
+        this.userRef.valueChanges().subscribe(userRef => {
+          console.log(userRef);
+        });
+
+        /*
+        //this.userRef = afs.collection('user', ref => ref.where('uid', '==', user.uid));
+        this.userRef = afs.collection('user');
+        this.userRef.valueChanges().subscribe(userdoc => {
+            console.log(userdoc);
+          }
+        );
+
+        this.userRef.add({testdoc: 'test'});
+
+        this.entriesRef = this.userRef.collection('entries');
+
+        this.entries = this.entriesRef.valueChanges().pipe(
+          map(entries => {
+            console.log(entries);
+          })
+        );
+
+        this.entriesRef.add({data: {name: 'jim', date: new Date()}});
+        this.entriesRef.add({data: {name: 'tim', date: new Date()}});
+        this.entriesRef.add({data: {name: 'kim', date: new Date()}});*/
+      }
       // this.entries = this.entriesRef.valueChanges().subscribe(entries => {
       //   console.log(entries);
       // });

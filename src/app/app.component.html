@@ -17,8 +17,7 @@
       {{authError}}
     </div>
 
-
-    <ngx-input type="text" [label]="'Email'" [autofocus]="true" [(ngModel)]="email" (ngModelChange)="clearAuthError()"  [hint]="'Enter your email'"></ngx-input>
+    <ngx-input type="text" [label]="'Email'" [(ngModel)]="email" (ngModelChange)="clearAuthError()"  [hint]="'Enter your email'"></ngx-input>
     <ngx-input type="password" [label]="'Password'" [(ngModel)]="password" (ngModelChange)="clearAuthError()" [hint]="'Enter your account password'"></ngx-input>
   </div>
   <div class="modal-footer">
@@ -27,3 +26,9 @@
     <button type="button" class="btn btn-light" (click)="login()" [disabled]="!email || !password">Login</button>
   </div>
 </ng-template>
+
+<ul>
+  <li *ngFor="let test of tests | async">
+    {{test}}
+  </li>
+</ul>
