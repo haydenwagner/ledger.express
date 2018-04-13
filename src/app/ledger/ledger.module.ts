@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LedgerComponent } from './ledger.component';
 
-import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng4-validators';
 
 import { EntryListComponent } from './entry-list/entry-list.component';
 import { EntryComponent } from './entry/entry.component';
@@ -20,7 +21,8 @@ import {DrawerService, DrawerModule, DateTimeModule, DateTimeComponent} from '@s
     CommonModule,
     DrawerModule,
     DateTimeModule,
-    FormsModule
+    ReactiveFormsModule,
+    CustomFormsModule
   ],
   declarations: [
     LedgerComponent,

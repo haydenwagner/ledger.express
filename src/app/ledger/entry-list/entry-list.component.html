@@ -7,8 +7,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr app-entry *ngFor="let entry of entries | async; let index = index" [entry]="entry" [index]="index"></tr>
-    <tr app-entry-input [elements]="data.elements"></tr>
+    <tr app-entry *ngFor="let entry of userEntries | async; let index = index" [entry]="entry" [index]="index"></tr>
+    <tr app-entry-input [elements]="data.elements" (addEntryAction)="addEntry($event)"></tr>
   </tbody>
 </table>
 

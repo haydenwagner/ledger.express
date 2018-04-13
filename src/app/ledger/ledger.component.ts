@@ -6,7 +6,7 @@ import { LedgerElementType } from '../enums/ledger-element-type.enum';
 
 import * as firebase from 'firebase/app';
 
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {Entry} from '../models/entry.model';
 
 import {Observable} from 'rxjs/Observable';
@@ -20,44 +20,16 @@ import {User} from '../models/user.model';
 })
 export class LedgerComponent implements OnInit {
   typeEnum: typeof LedgerElementType = LedgerElementType;
-  userCollection: AngularFirestoreCollection<User>;
-  entriesRef: AngularFirestoreCollection<Entry>;
-  entries$: Observable<Entry[]>;
+  userRef: AngularFirestoreDocument<User>;
 
   constructor(private afs: AngularFirestore) {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-
         this.userRef = afs.doc('user/' + user.uid);
         this.userRef.valueChanges().subscribe(userRef => {
           console.log(userRef);
         });
-
-        /*
-        //this.userRef = afs.collection('user', ref => ref.where('uid', '==', user.uid));
-        this.userRef = afs.collection('user');
-        this.userRef.valueChanges().subscribe(userdoc => {
-            console.log(userdoc);
-          }
-        );
-
-        this.userRef.add({testdoc: 'test'});
-
-        this.entriesRef = this.userRef.collection('entries');
-
-        this.entries = this.entriesRef.valueChanges().pipe(
-          map(entries => {
-            console.log(entries);
-          })
-        );
-
-        this.entriesRef.add({data: {name: 'jim', date: new Date()}});
-        this.entriesRef.add({data: {name: 'tim', date: new Date()}});
-        this.entriesRef.add({data: {name: 'kim', date: new Date()}});*/
       }
-      // this.entries = this.entriesRef.valueChanges().subscribe(entries => {
-      //   console.log(entries);
-      // });
     });
   }
 

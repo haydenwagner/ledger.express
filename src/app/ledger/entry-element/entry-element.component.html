@@ -1,4 +1,4 @@
-<div [ngSwitch]="elementType">
+<form [ngSwitch]="elementType" [formGroup]="entryElementForm" novalidate>
   <div *ngSwitchCase="LedgerElementType.text">
 
     <p [hidden]="editMode">
@@ -9,6 +9,7 @@
       <input type="text"
              placeholder="{{elementName}}"
              class="form-control"
+             formControlName="text"
              [(ngModel)]="elementValue">
     </div>
   </div>
@@ -27,6 +28,7 @@
         name="calendar-input1"
         placeholder="{{elementName}}"
         [(ngModel)]="elementValue"
+        formControlName="date"
         (change)="dateChanged($event)">
       </ngx-date-time>
     </div>
@@ -41,7 +43,12 @@
       <input type="text"
              placeholder="{{elementName}}"
              class="form-control"
+             formControlName="number"
              [(ngModel)]="elementValue">
+      <!--<input type="text" [(ngModel)]="model.field" name="field" #field="ngModel" number>-->
+      <!--<p *ngIf="field.errors?.number">Input a number</p>-->
     </div>
   </div>
-</div>
+
+  <p>{{'isValid: ' + entryElementForm.valid}}</p>
+</form>

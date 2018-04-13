@@ -1,9 +1,10 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 import {Entry} from '../../models/entry.model';
 import {LedgerElement} from '../../models/ledger-element.model';
 import {LedgerElementType} from '../../enums/ledger-element-type.enum';
 import {EntryMode} from '../../enums/entry-mode.enum';
+
 
 @Component({
   selector: '[app-entry-input]',
@@ -13,6 +14,7 @@ import {EntryMode} from '../../enums/entry-mode.enum';
 export class EntryInputComponent implements OnInit {
   @Input() elements: LedgerElement[];
   @Input() index: number;
+  @Output() addEntryAction = new EventEmitter<string>();
 
   LedgerElementType: typeof LedgerElementType = LedgerElementType;
   EntryMode: typeof EntryMode = EntryMode;
@@ -22,6 +24,6 @@ export class EntryInputComponent implements OnInit {
   ngOnInit() {}
 
   addEntry(event) {
-    console.log(event);
+    this.addEntryAction.emit(event);
   }
 }
