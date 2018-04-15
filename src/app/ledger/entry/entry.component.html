@@ -1,6 +1,7 @@
 <th scope="row">{{index+1}}</th>
 <td *ngFor="let entryElement of entry.data">
-  <app-entry-element [elementName]="entryElement.name" [elementType]="entryElement.type" [elementValue]="entryElement.value" [editMode]="entryMode"></app-entry-element>
+  <!--<app-entry-element [elementName]="entryElement.name" [elementType]="entryElement.type" [elementValue]="entryElement.value" [editMode]="entryMode"></app-entry-element>-->
+  <app-entry-element [element]="entryElement" [elementValue]="entryElement.value" [editMode]="entryMode"></app-entry-element>
 </td>
 <td>
   <!--<button class="btn btn-sm"-->

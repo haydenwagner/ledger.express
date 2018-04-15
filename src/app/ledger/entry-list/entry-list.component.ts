@@ -36,9 +36,9 @@ export class EntryListComponent implements OnInit {
     console.log(this.data);
   }
 
-  addEntry(event) {
-    console.log(event + ' from the entry list');
-    let testData = [
+  addEntry(data) {
+    console.log('add event received in the entry list controller, data received: ', data);
+    /*let testData = [
       {
         name: 'Date',
         type: this.typeEnum.date,
@@ -51,12 +51,12 @@ export class EntryListComponent implements OnInit {
       },
       {
         name: 'Amount',
-          type: this.typeEnum.number,
+        type: this.typeEnum.number,
         value: 100000
       }
-    ];
+    ];*/
 
-    let entry = new Entry(testData);
+    let entry = new Entry(data);
     let result = this.userEntriesRef.add(Object.assign({}, entry));
     // entry.$key = result.key;
     console.log(result);

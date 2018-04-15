@@ -1,4 +1,4 @@
-<form [ngSwitch]="elementType" [formGroup]="entryElementForm" novalidate>
+<form [ngSwitch]="elementType" [formGroup]="element.formRef">
   <div *ngSwitchCase="LedgerElementType.text">
 
     <p [hidden]="editMode">
@@ -9,7 +9,7 @@
       <input type="text"
              placeholder="{{elementName}}"
              class="form-control"
-             formControlName="text"
+             formControlName="value"
              [(ngModel)]="elementValue">
     </div>
   </div>
@@ -20,17 +20,23 @@
     </p>
 
     <div class="form-group" [hidden]="!editMode">
-      <!--<input type="text"-->
-             <!--placeholder="Datepicker"-->
-             <!--class="form-control">-->
-
-      <ngx-date-time
-        name="calendar-input1"
-        placeholder="{{elementName}}"
-        [(ngModel)]="elementValue"
-        formControlName="date"
-        (change)="dateChanged($event)">
-      </ngx-date-time>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control"
+                 formControlName="value"
+                 placeholder="yyyy-mm-dd"
+                 name="dp"
+                 [(ngModel)]="elementValue"
+                 ngbDatepicker
+                 #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary datepicker-button" (click)="d.toggle()" type="button">
+              <!--<img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>-->
+              <span octicon="calendar" color="#000000" width="22"></span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -43,12 +49,12 @@
       <input type="text"
              placeholder="{{elementName}}"
              class="form-control"
-             formControlName="number"
+             formControlName="value"
              [(ngModel)]="elementValue">
       <!--<input type="text" [(ngModel)]="model.field" name="field" #field="ngModel" number>-->
       <!--<p *ngIf="field.errors?.number">Input a number</p>-->
     </div>
   </div>
 
-  <p>{{'isValid: ' + entryElementForm.valid}}</p>
+  <p>{{'isValid: ' + element.formRef.controls.value.valid}}</p>
 </form>

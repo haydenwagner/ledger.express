@@ -1,9 +1,19 @@
-<th class="text-muted" scope="row">{{index+1}}</th>
-<td *ngFor="let element of elements">
-  <app-entry-element [elementName]="element.name" [elementType]="element.type" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>
-</td>
-<td>
 
+<th class="text-muted" scope="row">{{index+1}}</th>
+<span [formGroup]="entryForm">
+<td  formArrayName="elements" *ngFor="let element of elementsFormArray.controls; let i = index;">
+  <!--<app-entry-element [elementName]="element.name" [elementType]="element.type" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>-->
+  <app-entry-element [element]="elements[i]" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>
+  <pre style="color: white;">{{element.value | json}}</pre>
+</td>
+</span>
+<td>
   <app-entry-actions [addMode]="true"
                      (addEntryAction)="addEntry($event)"></app-entry-actions>
 </td>
+
+<div class="margin-20">
+  <div>myForm details:-</div>
+  <pre style="color: white;">Is myForm valid?: <br>{{entryForm.valid | json}}</pre>
+  <pre style="color: white;">form value: <br>{{entryForm.value | json}}</pre>
+</div>

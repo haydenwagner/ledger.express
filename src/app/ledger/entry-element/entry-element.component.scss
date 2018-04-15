@@ -1,4 +1,10 @@
 .form-group{
   margin-bottom: 0;
+
+  .datepicker-button{
+    display: flex;
+    padding: 0 .5rem;
+    align-items: inherit;
+  }
 }
 

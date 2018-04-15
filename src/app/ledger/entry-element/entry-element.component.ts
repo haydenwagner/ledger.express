@@ -3,8 +3,9 @@ import { LedgerElementType} from '../../enums/ledger-element-type.enum';
 import {EntryMode} from '../../enums/entry-mode.enum';
 
 
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { takeWhile, debounceTime, filter } from 'rxjs/operators';
+import {LedgerElement} from '../../models/ledger-element.model';
 
 @Component({
   selector: 'app-entry-element',
@@ -12,10 +13,13 @@ import { takeWhile, debounceTime, filter } from 'rxjs/operators';
   styleUrls: ['./entry-element.component.scss']
 })
 export class EntryElementComponent implements OnInit, OnDestroy {
-  @Input() elementType: LedgerElementType;
-  @Input() elementValue;
-  @Input() elementName: string; //todo be more specific with type
+  @Input() element: LedgerElement;
   @Input() editMode: EntryMode;
+  @Input() elementValue: any;
+
+  elementType: LedgerElementType;
+  elementName: string; //todo be more specific with type
+
   alive: boolean;
   LedgerElementType: typeof LedgerElementType = LedgerElementType;
   EntryMode: typeof EntryMode = EntryMode;
@@ -25,6 +29,9 @@ export class EntryElementComponent implements OnInit, OnDestroy {
   constructor(public fb: FormBuilder) {}
 
   ngOnInit() {
+    this.elementType = this.element.type;
+    this.elementName = this.element.name;
+
     const type = this.LedgerElementType[this.elementType];
 
     this.entryElementForm = this.fb.group({
