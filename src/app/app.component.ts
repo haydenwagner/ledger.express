@@ -1,5 +1,4 @@
 import { Component} from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
