@@ -1,3 +1,21 @@
+<div class="container-fluid">
+  <header class="table-row header">
+    <div class="column index">#</div>
+    <div *ngFor="let element of data.elements" class="column {{element.type}}">{{element.name}}</div>
+    <div class="column">-</div>
+  </header>
+  <div class="table-row">
+    <div class="column index">1</div>
+    <div class="column">{{data.elements[0].test}}</div>
+    <div class="column">{{data.elements[1].test}}</div>
+    <div class="column">{{data.elements[2].test}}</div>
+    <div class="column"><button>Test</button></div>
+  </div>
+</div>
+
+
+
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -11,6 +29,7 @@
     <tr app-entry-input [elements]="data.elements" (addEntryAction)="addEntry($event)"></tr>
   </tbody>
 </table>
+
 
 
 

@@ -5,6 +5,7 @@ import { AuthService } from '../../auth.service';
 import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import {LedgerElementType} from '../../enums/ledger-element-type.enum';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-entry-list',
@@ -19,7 +20,8 @@ export class EntryListComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private _fb: FormBuilder
   ) {
     authService.user.subscribe(user => {
       if (user) {

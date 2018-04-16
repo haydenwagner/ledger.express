@@ -19,10 +19,9 @@ export class EntryInputComponent implements OnInit {
   @Input() index: number;
   @Output() addEntryAction = new EventEmitter<any>();
 
-  entryForm: FormGroup;
-
   LedgerElementType: typeof LedgerElementType = LedgerElementType;
   EntryMode: typeof EntryMode = EntryMode;
+  entryForm: FormGroup;
 
   constructor(private _fb: FormBuilder) {}
 

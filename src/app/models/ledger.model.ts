@@ -4,6 +4,6 @@ import {LedgerElement} from './ledger-element.model';
 export class Ledger {
   $key: string;
   name: string;
-  elements: LedgerElement[];
+  elements: any; //replace with LedgerElement[] when done testing
   // entries: any;
 }

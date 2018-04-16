@@ -1,8 +1,8 @@
 
+
 <th class="text-muted" scope="row">{{index+1}}</th>
 <span [formGroup]="entryForm">
-<td  formArrayName="elements" *ngFor="let element of elementsFormArray.controls; let i = index;">
-  <!--<app-entry-element [elementName]="element.name" [elementType]="element.type" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>-->
+<td formArrayName="elements" *ngFor="let element of elementsFormArray.controls; let i = index;">
   <app-entry-element [element]="elements[i]" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>
   <pre style="color: white;">{{element.value | json}}</pre>
 </td>

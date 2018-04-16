@@ -39,15 +39,18 @@ export class LedgerComponent implements OnInit {
     elements: [
       {
         name: 'Date',
-        type: this.typeEnum.date
+        type: this.typeEnum.date,
+        test: 'Balooga Date'
       },
       {
         name: 'Name',
-        type: this.typeEnum.text
+        type: this.typeEnum.text,
+        test: 'Balooga Name'
       },
       {
         name: 'Amount',
-        type: this.typeEnum.number
+        type: this.typeEnum.number,
+        test: 'Balooga Number'
       },
     ]
   };
