@@ -21,3 +21,49 @@ ngx-date-time{
     padding-top: 8px;
   }
 }
+
+
+/*
+ * Define the widths: play around with these
+ * to get a best fit.
+ */
+$index-width: 45px;
+$date-width: 150px;
+$text-width: 220px;
+$number-width: 150px;
+$actions-width: 150px;
+//$module-width: 110px;
+//$reporter-width: 85px;
+//$status-width: 95px;
+//$owner-width: 75px;
+//$severity-width: 80px;
+//$icon-width: 18px;
+//$margin-width: 30px;
+
+.index { width: $index-width; }
+.date { width: $date-width; }
+.text { width: $text-width; }
+.number { width: $number-width; }
+.actions { width: $actions-width; }
+
+.column {
+  flex-grow: 0;
+  flex-shrink: 0;
+  //flex: 1 1 auto;
+  vertical-align: top;
+}
+
+// these are growable text containers, with ellipsis to show truncated text
+//.title, .comment {
+.text {
+  flex-grow: 1; -webkit-flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 4px;
+}
+
+.index {
+  //flex-grow: 1;
+  //flex-basis: $index-width;
+}

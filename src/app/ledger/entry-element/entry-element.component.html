@@ -1,9 +1,9 @@
 <form [ngSwitch]="elementType" [formGroup]="element.formRef">
   <div *ngSwitchCase="LedgerElementType.text">
 
-    <p [hidden]="editMode">
+    <div [hidden]="editMode">
       {{elementValue}}
-    </p>
+    </div>
 
     <div class="form-group" [hidden]="!editMode">
       <input type="text"
@@ -15,9 +15,9 @@
   </div>
 
   <div *ngSwitchCase="LedgerElementType.date">
-    <p [hidden]="editMode">
+    <div [hidden]="editMode">
       {{elementValue | date}}
-    </p>
+    </div>
 
     <div class="form-group" [hidden]="!editMode">
       <div class="form-group">
@@ -41,9 +41,9 @@
   </div>
 
   <div *ngSwitchCase="LedgerElementType.number">
-    <p [hidden]="editMode">
+    <div [hidden]="editMode">
       {{elementValue}}
-    </p>
+    </div>
 
     <div class="form-group" [hidden]="!editMode">
       <input type="text"
@@ -56,5 +56,5 @@
     </div>
   </div>
 
-  <p>{{'isValid: ' + element.formRef.controls.value.valid}}</p>
+  <!--<p>{{'isValid: ' + element.formRef.controls.value.valid}}</p>-->
 </form>

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Injectable, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 import {Entry} from '../../models/entry.model';
 import {LedgerElement} from '../../models/ledger-element.model';
@@ -9,10 +9,34 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as _ from 'lodash';
 
 
+import {NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+
+// todo move eventually, from this example https://ng-bootstrap.github.io/#/components/datepicker/examples
+/**
+ * Example of a Native Date adapter
+ */
+@Injectable()
+export class NgbDateNativeAdapter extends NgbDateAdapter<Date> {
+
+  fromModel(date: Date): NgbDateStruct {
+    return (date && date.getFullYear) ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : null;
+  }
+
+  toModel(date: NgbDateStruct): Date {
+    return date ? new Date(date.year, date.month - 1, date.day) : null;
+  }
+}
+
+
+
+
 @Component({
   selector: '[app-entry-input]',
   templateUrl: './entry-input.component.html',
-  styleUrls: ['./entry-input.component.html']
+  styleUrls: ['./entry-input.component.html'],
+
+  // todo probably provide at a higher level
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class EntryInputComponent implements OnInit {
   @Input() elements: LedgerElement[];

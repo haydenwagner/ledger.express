@@ -1,14 +1,32 @@
-<th scope="row">{{index+1}}</th>
-<td *ngFor="let entryElement of entry.data">
-  <!--<app-entry-element [elementName]="entryElement.name" [elementType]="entryElement.type" [elementValue]="entryElement.value" [editMode]="entryMode"></app-entry-element>-->
+<!--<th scope="row">{{index+1}}</th>-->
+<div class="column index">{{index+1}}</div>
+
+
+<!--<td *ngFor="let entryElement of entry.data">-->
+  <!--&lt;!&ndash;<app-entry-element [elementName]="entryElement.name" [elementType]="entryElement.type" [elementValue]="entryElement.value" [editMode]="entryMode"></app-entry-element>&ndash;&gt;-->
+  <!--<app-entry-element [element]="entryElement" [elementValue]="entryElement.value" [editMode]="entryMode"></app-entry-element>-->
+<!--</td>-->
+
+<div class="column {{typeEnum[entryElement.type]}}" *ngFor="let entryElement of entry.data">
   <app-entry-element [element]="entryElement" [elementValue]="entryElement.value" [editMode]="entryMode"></app-entry-element>
-</td>
-<td>
-  <!--<button class="btn btn-sm"-->
-          <!--(click)="toggleMode()">{{EntryMode[viewMode ? 0 : 1]}}</button>-->
+</div>
+
+<!--<td>-->
+<!--&lt;!&ndash;<button class="btn btn-sm"&ndash;&gt;-->
+<!--&lt;!&ndash;(click)="toggleMode()">{{EntryMode[viewMode ? 0 : 1]}}</button>&ndash;&gt;-->
+<!--<app-entry-actions [viewMode]="entryMode"-->
+<!--(editEntryAction)="editEntry($event)"-->
+<!--(deleteEntryAction)="deleteEntry($event)"-->
+<!--(saveEditAction)="saveEdit($event)"-->
+<!--(cancelEditAction)="cancelEdit($event)"></app-entry-actions>-->
+<!--</td>-->
+
+<div class="column actions">
   <app-entry-actions [viewMode]="entryMode"
                      (editEntryAction)="editEntry($event)"
                      (deleteEntryAction)="deleteEntry($event)"
                      (saveEditAction)="saveEdit($event)"
                      (cancelEditAction)="cancelEdit($event)"></app-entry-actions>
-</td>
+</div>
+
+

@@ -1,20 +1,41 @@
 <div class="container-fluid">
   <header class="table-row header">
     <div class="column index">#</div>
-    <div *ngFor="let element of data.elements" class="column {{element.type}}">{{element.name}}</div>
-    <div class="column">-</div>
+    <div *ngFor="let element of data.elements" class="column {{typeEnum[element.type]}}">{{element.name}}</div>
+    <div class="column actions">-</div>
   </header>
   <div class="table-row">
     <div class="column index">1</div>
-    <div class="column">{{data.elements[0].test}}</div>
-    <div class="column">{{data.elements[1].test}}</div>
-    <div class="column">{{data.elements[2].test}}</div>
-    <div class="column"><button>Test</button></div>
+    <div class="column date">{{data.elements[0].test}}</div>
+    <div class="column text">{{data.elements[1].test}}</div>
+    <div class="column number">{{data.elements[2].test}}</div>
+    <div class="column actions"><button>Test</button></div>
   </div>
+
+  <div class="table-row">
+    <div class="column index">2</div>
+    <div class="column date">Date</div>
+    <div class="column text">Name</div>
+    <div class="column number">Amount</div>
+    <div class="column actions">-</div>
+  </div>
+
+  <div class="table-row">
+    <div class="column index">3000</div>
+    <div class="column date">D</div>
+    <div class="column text">Name this is a really long name that should hopefully ellipsis instead of overflowing.</div>
+    <div class="column number">A</div>
+    <div class="column actions">-</div>
+  </div>
+
+  <div class="table-row" app-entry *ngFor="let entry of userEntries | async; let index = index" [entry]="entry" [index]="index"></div>
+
 </div>
 
 
-
+<br>
+<br>
+<br>
 
 <table class="table table-hover">
   <thead>
@@ -25,7 +46,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr app-entry *ngFor="let entry of userEntries | async; let index = index" [entry]="entry" [index]="index"></tr>
+    <!--<tr app-entry *ngFor="let entry of userEntries | async; let index = index" [entry]="entry" [index]="index"></tr>-->
     <tr app-entry-input [elements]="data.elements" (addEntryAction)="addEntry($event)"></tr>
   </tbody>
 </table>

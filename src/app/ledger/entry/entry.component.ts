@@ -4,6 +4,7 @@ import {EntryMode} from '../../enums/entry-mode.enum';
 import {Entry} from '../../models/entry.model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LedgerElement} from '../../models/ledger-element.model';
+import {LedgerElementType} from '../../enums/ledger-element-type.enum';
 
 @Component({
   selector: '[app-entry]',
@@ -15,6 +16,8 @@ export class EntryComponent implements OnInit {
   entryMode: EntryMode = EntryMode.view;
   entryForm: FormGroup;
   elements: any[];
+
+  public typeEnum: typeof LedgerElementType = LedgerElementType;
 
   @Input() entry: Entry;
   @Input() index: number;

@@ -16,7 +16,7 @@ export class EntryListComponent implements OnInit {
   @Input() data: Ledger;
   private userEntriesRef: AngularFirestoreCollection<Entry>;
   public userEntries: Observable<Entry[]>;
-  private typeEnum: typeof LedgerElementType = LedgerElementType;
+  public typeEnum: typeof LedgerElementType = LedgerElementType;
 
   constructor(
     private authService: AuthService,
