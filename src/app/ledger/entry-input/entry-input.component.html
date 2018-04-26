@@ -1,19 +1,21 @@
 
 
-<th class="text-muted" scope="row">{{index+1}}</th>
-<span [formGroup]="entryForm">
-<td formArrayName="elements" *ngFor="let element of elementsFormArray.controls; let i = index;">
-  <app-entry-element [element]="elements[i]" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>
-  <pre style="color: white;">{{element.value | json}}</pre>
-</td>
-</span>
-<td>
+<div *ngIf="inputNumber" class="column index">{{inputNumber + 1}}</div>
+<div *ngIf="!inputNumber" class="column index">-</div>
+
+<!--<span [formGroup]="entryForm">-->
+  <div class="column {{typeEnum[elements[i].type]}}" *ngFor="let element of elementsFormArray.controls; let i = index;">
+    <app-entry-element [element]="elements[i]" [elementValue]="''" [editMode]="EntryMode.edit"></app-entry-element>
+  </div>
+<!--</span>-->
+
+<div class="column actions">
   <app-entry-actions [addMode]="true"
                      (addEntryAction)="addEntry($event)"></app-entry-actions>
-</td>
+</div>
 
-<div class="margin-20">
+<div class="margin-20 form-details">
   <div>myForm details:-</div>
-  <pre style="color: white;">Is myForm valid?: <br>{{entryForm.valid | json}}</pre>
-  <pre style="color: white;">form value: <br>{{entryForm.value | json}}</pre>
+  <pre>Is myForm valid?: <br>{{entryForm.valid | json}}</pre>
+  <pre>form value: <br>{{entryForm.value | json}}</pre>
 </div>

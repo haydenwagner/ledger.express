@@ -17,6 +17,7 @@ export class EntryListComponent implements OnInit {
   private userEntriesRef: AngularFirestoreCollection<Entry>;
   public userEntries: Observable<Entry[]>;
   public typeEnum: typeof LedgerElementType = LedgerElementType;
+  public totalEntries: number;
 
   constructor(
     private authService: AuthService,
@@ -29,6 +30,7 @@ export class EntryListComponent implements OnInit {
         this.userEntries = this.userEntriesRef.valueChanges();
         this.userEntriesRef.valueChanges().subscribe(entries => {
           entries.map(entry => console.log(entry));
+          this.totalEntries = entries.length;
         });
       }
     });

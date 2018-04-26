@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Injectable, OnInit, Input, OnChanges, Output, EventEmitter, SimpleChanges} from '@angular/core';
 
 import {Entry} from '../../models/entry.model';
 import {LedgerElement} from '../../models/ledger-element.model';
@@ -38,12 +38,14 @@ export class NgbDateNativeAdapter extends NgbDateAdapter<Date> {
   // todo probably provide at a higher level
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
-export class EntryInputComponent implements OnInit {
+export class EntryInputComponent implements OnInit, OnChanges {
   @Input() elements: LedgerElement[];
   @Input() index: number;
+  public inputNumber: number;
   @Output() addEntryAction = new EventEmitter<any>();
 
   LedgerElementType: typeof LedgerElementType = LedgerElementType;
+  public typeEnum: typeof LedgerElementType = LedgerElementType;
   EntryMode: typeof EntryMode = EntryMode;
   entryForm: FormGroup;
 
@@ -57,6 +59,13 @@ export class EntryInputComponent implements OnInit {
     this.elements.map(element => {
       this.elementsFormArray.push(this.initElementForm(element));
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['index'] && changes['index'].currentValue) {
+      console.log(changes['index']);
+      this.inputNumber = changes['index'].currentValue;
+    }
   }
 
   initElementForm(element): FormGroup {

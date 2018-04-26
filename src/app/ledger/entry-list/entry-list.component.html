@@ -4,6 +4,8 @@
     <div *ngFor="let element of data.elements" class="column {{typeEnum[element.type]}}">{{element.name}}</div>
     <div class="column actions">-</div>
   </header>
+
+  <!--
   <div class="table-row">
     <div class="column index">1</div>
     <div class="column date">{{data.elements[0].test}}</div>
@@ -27,8 +29,11 @@
     <div class="column number">A</div>
     <div class="column actions">-</div>
   </div>
+  -->
 
   <div class="table-row" app-entry *ngFor="let entry of userEntries | async; let index = index" [entry]="entry" [index]="index"></div>
+
+  <div class="table-row" style="position: relative;" app-entry-input [elements]="data.elements" [index]="totalEntries" (addEntryAction)="addEntry($event)"></div>
 
 </div>
 
@@ -37,19 +42,19 @@
 <br>
 <br>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th *ngFor="let element of data.elements" scope="col">{{element.name}}</th>
-      <th scope="col"> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <!--<tr app-entry *ngFor="let entry of userEntries | async; let index = index" [entry]="entry" [index]="index"></tr>-->
-    <tr app-entry-input [elements]="data.elements" (addEntryAction)="addEntry($event)"></tr>
-  </tbody>
-</table>
+<!--<table class="table table-hover">-->
+  <!--<thead>-->
+    <!--<tr>-->
+      <!--<th scope="col">#</th>-->
+      <!--<th *ngFor="let element of data.elements" scope="col">{{element.name}}</th>-->
+      <!--<th scope="col"> </th>-->
+    <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+    <!--&lt;!&ndash;<tr app-entry *ngFor="let entry of userEntries | async; let index = index" [entry]="entry" [index]="index"></tr>&ndash;&gt;-->
+    <!--<tr app-entry-input [elements]="data.elements" (addEntryAction)="addEntry($event)"></tr>-->
+  <!--</tbody>-->
+<!--</table>-->
 
 
 

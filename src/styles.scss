@@ -67,3 +67,15 @@ $actions-width: 150px;
   //flex-grow: 1;
   //flex-basis: $index-width;
 }
+
+.form-details {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 250px;
+  background: whitesmoke;
+  border: 2px solid gray;
+  padding: 10px;
+  font-size: 10px;
+  color: #000;
+}
